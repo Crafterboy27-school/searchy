@@ -1,4 +1,10 @@
 (async () => {
+  var passcode = prompt("Passcode?")
+  var correctPasscode = "aV9hbV9kdW1i"
+  if(btoa(passcode)!==correctPasscode){
+    document.body.innerHTML = ""
+    alert("No passwords?")
+  }
   let domains = ["https://webglmath.github.io/"]
   let games = await fetch("./games.json")
   games = await games.json()
