@@ -1,6 +1,6 @@
 (async () => {
   var passcode = "";
-  var correctPasscode = "aV9hbV9kdW1i";
+  var correctPasscode = "Y2hlZXRvc190YXN0ZV9nb29k";
 
   if (btoa(localStorage.getItem("passcode")) !== correctPasscode) {
     passcode = prompt("Passcode?");
