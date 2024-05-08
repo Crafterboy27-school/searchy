@@ -1,6 +1,7 @@
 (async () => {
   var passcode = "";
-  var correctPasscode = "Y2hlZXRvc190YXN0ZV9nb29k";
+  var correctPasscode = await fetch("code.txt");
+  correctPasscode = await correctPasscode.text();
 
   if (btoa(localStorage.getItem("passcode")) !== correctPasscode) {
     passcode = prompt("Passcode?");
@@ -9,11 +10,24 @@
   }
 
   if (btoa(passcode) !== correctPasscode) {
-    document.body.innerHTML = "";
+    document.body.innerHTML = "No passcode L";
     alert("No passwords?");
     return;
   }
   localStorage.setItem("passcode", passcode);
+
+  var done = false;
+  setInterval(async () => {
+    if (done == true) return;
+    correctPasscode = await fetch("code.txt");
+    correctPasscode = await correctPasscode.text();
+    if (btoa(passcode) !== correctPasscode) {
+      document.body.innerHTML = "Password expired L";
+      alert("Password expired!");
+      done = true;
+      return;
+    }
+  }, 1000);
   let domains = ["https://webglmath.github.io/"];
   let games = await fetch("./games.json");
   games = await games.json();
