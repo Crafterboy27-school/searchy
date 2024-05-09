@@ -19,7 +19,7 @@
   var done = false;
   setInterval(async () => {
     if (done == true) return;
-    correctPasscode = await fetch("code.txt");
+    correctPasscode = await fetch("code.txt?"+Math.round(Math.random()*10000000));
     correctPasscode = await correctPasscode.text();
     if (btoa(passcode) !== correctPasscode) {
       document.body.innerHTML = "Password expired L";
