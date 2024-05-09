@@ -2,6 +2,7 @@
   var passcode = "";
   var correctPasscode = await fetch("code.txt");
   correctPasscode = await correctPasscode.text();
+  correctPasscode = correctPasscode.split("\n")[0]
 
   if (btoa(localStorage.getItem("passcode")) !== correctPasscode) {
     passcode = prompt("Passcode?");
@@ -19,7 +20,7 @@
   var done = false;
   setInterval(async () => {
     if (done == true) return;
-    correctPasscode = await fetch("code.txt?"+Math.round(Math.random()*10000000));
+    correctPasscode = await fetch("code.txt?"+Math.round(Math.random()*10000000),{cache:"no-cache"});
     correctPasscode = await correctPasscode.text();
     if (btoa(passcode) !== correctPasscode) {
       document.body.innerHTML = "Password expired L";
