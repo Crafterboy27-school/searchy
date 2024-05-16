@@ -1,34 +1,34 @@
 (async () => {
-  var passcode = "";
-  var correctPasscode = await fetch("code.txt");
-  correctPasscode = await correctPasscode.text();
-  correctPasscode = correctPasscode.split("\n")[0]
+  // var passcode = "";
+  // var correctPasscode = await fetch("code.txt");
+  // correctPasscode = await correctPasscode.text();
+  // correctPasscode = correctPasscode.split("\n")[0]
 
-  if (btoa(localStorage.getItem("passcode")) !== correctPasscode) {
-    passcode = prompt("Passcode?");
-  } else {
-    passcode = localStorage.getItem("passcode");
-  }
+  // if (btoa(localStorage.getItem("passcode")) !== correctPasscode) {
+  //   passcode = prompt("Passcode?");
+  // } else {
+  //   passcode = localStorage.getItem("passcode");
+  // }
 
-  if (btoa(passcode) !== correctPasscode) {
-    document.body.innerHTML = "No passcode L";
-    alert("No passwords?");
-    return;
-  }
-  localStorage.setItem("passcode", passcode);
+  // if (btoa(passcode) !== correctPasscode) {
+  //   document.body.innerHTML = "No passcode L";
+  //   alert("No passwords?");
+  //   return;
+  // }
+  // localStorage.setItem("passcode", passcode);
 
-  var done = false;
-  setInterval(async () => {
-    if (done == true) return;
-    correctPasscode = await fetch("code.txt?"+Math.round(Math.random()*10000000),{cache:"no-cache"});
-    correctPasscode = await correctPasscode.text();
-    if (btoa(passcode) !== correctPasscode) {
-      document.body.innerHTML = "Password expired L";
-      alert("Password expired!");
-      done = true;
-      return;
-    }
-  }, 1000);
+  // var done = false;
+  // setInterval(async () => {
+  //   if (done == true) return;
+  //   correctPasscode = await fetch("code.txt?"+Math.round(Math.random()*10000000),{cache:"no-cache"});
+  //   correctPasscode = await correctPasscode.text();
+  //   if (btoa(passcode) !== correctPasscode) {
+  //     document.body.innerHTML = "Password expired L";
+  //     alert("Password expired!");
+  //     done = true;
+  //     return;
+  //   }
+  // }, 1000);
   let domains = ["https://webglmath.github.io/"];
   let games = await fetch("./games.json");
   games = await games.json();
